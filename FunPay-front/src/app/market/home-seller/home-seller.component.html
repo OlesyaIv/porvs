@@ -1,0 +1,40 @@
+<h1 class="title">
+  Welcome back, {{seller.username}}!
+
+  <button class="exit-button" (click)="exit()">
+    <img src="assets/img/exit.jpg" class="exit">
+  </button>
+
+</h1>
+
+<button class="create-button" (click)="createItem()">Add Item</button>
+
+<div class="content">
+  <h3>Items</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Server</th>
+        <th>Bet</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.server }}</td>
+        <td>
+          <ng-container *ngFor="let bet of bets">
+            <ng-container *ngIf="bet.item.id === item.id">{{bet.bet}}</ng-container>
+          </ng-container>
+        </td>
+        <td>
+          <button (click)=placeAsk(item) type="button">Ask</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,53 @@
+<h1 class="title">Welcome back, {{administrator.username}}!
+
+  <button class="exit-button" (click)="exit()">
+    <img src="assets/img/exit.jpg" class="exit">
+  </button>
+
+</h1>
+
+<div class="content">
+  <h3>Items Orders</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let deal of deals" class="border_bottom">
+          <td>{{ deal.id }}</td>
+          <td>{{ deal.bet.item.name }}</td>
+          <td>{{ deal.ask.ask }}</td>
+          <td>
+            <button type="button" (click)=approveDeal(deal)>Approve</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  <h3>Items</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Server</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items" class="border_bottom">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.server }}</td>
+          <td>
+            <button type="button" (click)=deleteItem(item)>Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

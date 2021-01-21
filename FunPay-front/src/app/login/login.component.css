@@ -1,0 +1,15 @@
+.row {
+  position: center;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  }
+
+
+
+.ava {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,96 @@
+<h1 class="title">
+  Welcome back, {{buyer?.username}}!
+
+  <button class="exit-button" (click)="exit()">
+    <img src="assets/img/exit.jpg" class="exit">
+  </button>
+</h1>
+
+<div class="content-wrapper">
+  <div class="content">
+
+    <div class="tab-header">
+      <div class="tab-header-item"
+           [ngClass]="{'current': currentTab === tab}"
+           (click)="changeTab(tab)"
+           *ngFor="let tab of tabs">
+        <span>{{tab}}</span>
+      </div>
+    </div>
+
+    <div *ngIf="currentTab == tabs[0]" class="items">
+      <table>
+        <thead>
+        <tr class="border_bottom">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Server</th>
+          <th>Ask</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of items">
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.server }}</td>
+            <td>
+              <ng-container *ngFor="let ask of asks">
+                <ng-container *ngIf="ask.item.id === item.id">{{ask.ask}}</ng-container>
+              </ng-container>
+            </td>
+            <td>
+              <button (click)=placeBet(item) type="button">Bet</button>
+            </td>
+          </tr>
+        </ng-container>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="currentTab == tabs[1]" class="bets">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Bet</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let bet of buyer.bets">
+          <tr >
+            <td>{{ bet.item.id }}</td>
+            <td>{{ bet.bet }}</td>
+          </tr>
+        </ng-container>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="currentTab == tabs[2]" class="orders">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Item name</th>
+          <th>UID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let order of buyer.orders">
+          <tr >
+            <td>{{ order.id }}</td>
+            <td>{{ order.item.name }}</td>
+            <td>{{ order.uid }}</td>
+          </tr>
+        </ng-container>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
